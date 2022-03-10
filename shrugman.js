@@ -29,7 +29,8 @@ class Shrugman{
                 'A Beautiful Mind',
                 'The Fault in Our Stars',
                 'The Theory of Everything',
-                'Me Before You'
+                'Me Before You',
+                'The Men Who Stare at Goats'
 
             ],
             books: [
