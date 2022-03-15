@@ -4,8 +4,22 @@ const Shrugman = require("./shrugman");
 
 const game = new Shrugman();
 
+console.log(`\n
+
+███████╗██╗  ██╗██████╗ ██╗   ██╗ ██████╗ ███╗   ███╗ █████╗ ███╗   ██╗
+██╔════╝██║  ██║██╔══██╗██║   ██║██╔════╝ ████╗ ████║██╔══██╗████╗  ██║
+███████╗███████║██████╔╝██║   ██║██║  ███╗██╔████╔██║███████║██╔██╗ ██║
+╚════██║██╔══██║██╔══██╗██║   ██║██║   ██║██║╚██╔╝██║██╔══██║██║╚██╗██║
+███████║██║  ██║██║  ██║╚██████╔╝╚██████╔╝██║ ╚═╝ ██║██║  ██║██║ ╚████║
+╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝                                                                                                                                                                                 
+ 
+`.rainbow);
 
 let category = prompt(`Choose a category (movies / books): `.rainbow);
+while(category.toLowerCase() !=="movies" && category.toLowerCase() !== "books"){
+    category = prompt(`Choose a valid category, either movies or books: `.rainbow);
+    }
+    
 game.setCategory(category);
 
 let guess = "";
@@ -13,10 +27,9 @@ let guess = "";
 const runGame = function(){
 while(game.isGameOn()){
     console.clear();
-    console.log("Category >".blue, category.underline.blue);
+    console.log("Category >".blue, category.underline.blue, game.showAlreadyTried().italic.grey,"\n");
     console.log("\n\n", game.displayGuessWord().yellow, "\n\n");
     console.log(game.displayShrugman().bold.magenta, "\n\n");
-    console.log(game.showAlreadyTried().italic.grey,"\n");
     guess = prompt(` Guess a letter or type entire name to solve it: `.yellow);
     game.validateGuess(guess);
 }};
@@ -24,10 +37,9 @@ while(game.isGameOn()){
 runGame(); 
 
 console.clear();
-console.log("Category >".blue, category.underline.blue);
+console.log("Category >".blue, category.underline.blue, game.showAlreadyTried().italic.grey,"\n");
 console.log("\n\n", game.displayGuessWord().yellow, "\n\n");
 console.log(game.displayShrugman().bold.magenta, "\n\n");
-console.log(game.showAlreadyTried().italic.grey,"\n");
 
 if(game.isWinning()){
     console.log(String.fromCodePoint(0x1F3C6, 0x1F973), "Well done!\n".magenta);
@@ -44,10 +56,9 @@ if(anotherRound === "y"){
     game.reset(); 
     runGame();
     console.clear();
-    console.log("Category >".blue, category.underline.blue);
+    console.log("Category >".blue, category.underline.blue, game.showAlreadyTried().italic.gray,"\n");
     console.log("\n\n", game.displayGuessWord().yellow, "\n\n");
     console.log(game.displayShrugman().bold.magenta, "\n\n");
-    console.log(game.showAlreadyTried().italic.gray,"\n");
     game.addResult();
 
     if(game.isWinning()){
@@ -58,9 +69,8 @@ if(anotherRound === "y"){
     
 }
 
-
 console.log("\n", game.getResults(), "\n");
-console.log("-- THE END --".rainbow);
+console.log("-- End of Game --".rainbow, "\n");
     
 
 
